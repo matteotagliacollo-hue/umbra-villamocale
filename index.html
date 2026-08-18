@@ -1,4 +1,482 @@
-<!-- test umbra --><!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>Villa Mocale — Matrimoni d'eccezione nel Chianti | San Casciano in Val di Pesa</title>
+<meta name="description" content="Villa Mocale, dimora storica nel Chianti fiorentino. Il tramonto più bello del Chianti per il giorno più importante della vostra vita. 4.9/5 su 85 recensioni.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#0a0806; --bg2:#110d09; --ink:#f3ecdd; --dim:#9d907a;
+ --gold:#c9a227; --gold2:#eed488; --gold3:#8a6d1a;
+ --brd:rgba(201,162,39,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden}
+::selection{background:var(--gold);color:#0a0806}
+h1,h2,h3{font-weight:400}
+img{display:block;max-width:100%}
+a{color:inherit}
+.serif{font-family:'Cormorant Garamond',serif}
+.disp{font-family:'Italiana',serif}
+.script{font-family:'Pinyon Script',cursive}
+#cur,#curDot{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
+#cur{width:44px;height:44px;border:1px solid rgba(238,212,136,.65);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference}
+#cur.big{width:90px;height:90px;background:rgba(238,212,136,.12)}
+#curDot{width:5px;height:5px;background:var(--gold2)}
+@media(hover:none){#cur,#curDot{display:none}}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold3),var(--gold2));width:0;z-index:300}
+#pre{position:fixed;inset:0;background:#070503;z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:30px}
+#pre .mono{width:120px;height:120px;border:1px solid var(--brd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Italiana',serif;font-size:40px;color:var(--gold2);position:relative}
+#pre .mono:after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid transparent;border-top-color:var(--gold2);animation:spin 1.2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#pre .name{letter-spacing:10px;font-size:13px;text-transform:uppercase;color:var(--dim)}
+#pre .pct{font-family:'Italiana',serif;font-size:70px;color:var(--ink);line-height:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:26px 4vw;transition:all .5s}
+nav.solid{background:rgba(10,8,6,.72);backdrop-filter:blur(20px);padding:14px 4vw;border-bottom:1px solid var(--brd)}
+.logo{display:flex;gap:16px;align-items:center;text-decoration:none}
+.logo .m{width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Italiana',serif;font-size:17px;color:var(--gold2)}
+.logo .t{font-family:'Italiana',serif;font-size:22px;letter-spacing:4px}
+.nl{display:flex;gap:38px;align-items:center}
+.nl a{text-decoration:none;font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);opacity:.8;position:relative}
+.nl a:not(.wab):after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--gold2);transition:width .4s}
+.nl a:not(.wab):hover:after{width:100%}
+.wab{background:linear-gradient(120deg,#1ebe5d,#0e9d4d);padding:12px 24px;border-radius:40px;color:#fff!important;display:flex;gap:9px;align-items:center;font-size:11px!important;box-shadow:0 8px 30px rgba(30,190,93,.35)}
+.wab svg{width:15px;height:15px;fill:#fff}
+@media(max-width:860px){.nl a:not(.wab){display:none}}
+#hero{position:relative;height:100vh;min-height:660px;overflow:hidden}
+.hs{position:absolute;inset:-4%;object-fit:cover;width:108%;height:108%;opacity:0;transition:opacity 2.2s ease;will-change:transform}
+.hs.on{opacity:1}
+#heroVeil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.5),rgba(10,8,6,.18) 40%,rgba(10,8,6,.94));z-index:2}
+#gl{position:absolute;inset:0;z-index:3;pointer-events:none}
+.hc{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 5vw}
+.hk{font-size:11px;letter-spacing:9px;text-transform:uppercase;color:var(--gold2);margin-bottom:30px}
+.ht{font-family:'Italiana',serif;font-size:clamp(58px,11.5vw,170px);line-height:.95;color:#fbf7ec;text-shadow:0 10px 80px rgba(0,0,0,.6)}
+.ht .ch{display:inline-block}
+.hsub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(18px,2.4vw,28px);color:#ecdfc2;margin-top:26px}
+.hloc{margin-top:16px;font-size:11.5px;letter-spacing:5px;text-transform:uppercase;color:#b9ab8d}
+.hcta{margin-top:48px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.btn{position:relative;padding:18px 44px;border-radius:60px;text-decoration:none;font-size:12px;letter-spacing:3.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s;will-change:transform}
+.bg1{background:linear-gradient(120deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#140f05;font-weight:500;box-shadow:0 14px 50px rgba(201,162,39,.35)}
+.bg1:hover{box-shadow:0 20px 70px rgba(201,162,39,.55)}
+.bg2b{border:1px solid rgba(251,247,236,.5);color:#fbf7ec}
+.bg2b:hover{background:rgba(251,247,236,.1)}
+.hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:10px;color:#cbbc9a;font-size:10px;letter-spacing:4px;text-transform:uppercase}
+.hint .l{width:1px;height:52px;background:linear-gradient(180deg,var(--gold2),transparent);animation:dr 1.9s infinite}
+@keyframes dr{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.mq{border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);padding:20px 0;overflow:hidden;background:var(--bg2)}
+.mq .in{display:flex;gap:60px;white-space:nowrap;will-change:transform}
+.mq span{font-family:'Italiana',serif;font-size:20px;letter-spacing:5px;color:var(--dim);display:flex;align-items:center;gap:60px}
+.mq b{color:var(--gold2);font-weight:400}
+.manif{padding:16vh 8vw;max-width:1500px;margin:0 auto}
+.manif .line{overflow:hidden}
+.manif .line span{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.6vw,64px);line-height:1.25;color:#efe6d2}
+.manif .line i{color:var(--gold2);font-style:italic}
+.manif .script{color:var(--gold2);font-size:clamp(34px,4.5vw,58px)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:12vh}
+.st{border-top:1px solid var(--brd);padding-top:26px}
+.st .n{font-family:'Italiana',serif;font-size:clamp(44px,5.5vw,84px);color:var(--gold2);line-height:1}
+.st .l{margin-top:10px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+#horiz{position:relative}
+#htrack{display:flex;height:100vh;align-items:center;will-change:transform}
+.panel{flex:0 0 auto;width:72vw;height:76vh;margin-right:6vw;position:relative;overflow:hidden;border-radius:6px}
+.panel:first-child{margin-left:14vw}
+.panel img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);will-change:transform}
+.panel .cap{position:absolute;left:34px;bottom:30px;z-index:3}
+.panel .cap .k{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold2)}
+.panel .cap .t{font-family:'Italiana',serif;font-size:clamp(28px,3.4vw,52px);color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.75)}
+.panel:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,6,4,.66))}
+.panel .num{position:absolute;top:26px;right:30px;font-family:'Italiana',serif;font-size:20px;color:rgba(255,255,255,.65);z-index:3}
+.htit{position:absolute;top:7vh;left:14vw;z-index:5}
+.htit .k{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold2)}
+.htit .t{font-family:'Italiana',serif;font-size:clamp(30px,4vw,56px);color:#f6efdf}
+.film{padding:16vh 8vw;text-align:center;background:var(--bg2);border-top:1px solid var(--brd);border-bottom:1px solid var(--brd)}
+.film .k{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold2)}
+.film h2{font-family:'Italiana',serif;font-size:clamp(36px,5.5vw,80px);margin:14px 0 8px;color:#f6efdf}
+.film p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--dim)}
+.fwrap{position:relative;max-width:1150px;margin:60px auto 0;aspect-ratio:16/9;border-radius:10px;overflow:hidden;box-shadow:0 50px 140px rgba(0,0,0,.7);border:1px solid var(--brd)}
+.fwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.fcover{position:absolute;inset:0;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2}
+.fcover:after{content:"";position:absolute;inset:0;background:rgba(8,6,4,.4);transition:background .4s}
+.fcover:hover:after{background:rgba(8,6,4,.25)}
+.play{position:relative;z-index:3;width:110px;height:110px;border-radius:50%;border:1px solid var(--gold2);display:flex;align-items:center;justify-content:center;background:rgba(10,8,6,.4);backdrop-filter:blur(6px);transition:transform .4s}
+.fcover:hover .play{transform:scale(1.12)}
+.play:before{content:"";border-left:22px solid var(--gold2);border-top:13px solid transparent;border-bottom:13px solid transparent;margin-left:6px}
+.pulse2{position:absolute;inset:0;border-radius:50%;border:1px solid var(--gold2);animation:pl 2.2s infinite}
+@keyframes pl{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+.ed{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.ed .im{position:relative;overflow:hidden;min-height:76vh}
+.ed .im img{position:absolute;inset:0;width:100%;height:118%;object-fit:cover;will-change:transform}
+.ed .tx{padding:12vh 7vw;display:flex;flex-direction:column;justify-content:center}
+.ed .k{font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold2);margin-bottom:20px}
+.ed h3{font-family:'Italiana',serif;font-size:clamp(30px,3.6vw,54px);color:#f6efdf;line-height:1.08;margin-bottom:24px}
+.ed p{font-size:16px;line-height:2;color:var(--dim);max-width:52ch}
+.ed p b{color:var(--ink);font-weight:400}
+.ed ul{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.ed li{display:flex;gap:14px;align-items:baseline;font-size:15px;color:#cfc3ab}
+.ed li:before{content:"◆";color:var(--gold);font-size:10px}
+@media(max-width:900px){.ed{grid-template-columns:1fr}.ed .im{min-height:52vh}}
+.revs{padding:16vh 8vw;text-align:center;position:relative}
+.revs .stars{color:var(--gold2);letter-spacing:8px;font-size:24px}
+.revs .big{font-family:'Italiana',serif;font-size:clamp(48px,7vw,110px);color:#f6efdf;line-height:1;margin:16px 0 4px}
+.revs .src{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
+.rc{max-width:900px;margin:60px auto 0;position:relative;min-height:280px}
+.rv1{position:absolute;inset:0;opacity:0;transition:opacity 1.1s}
+.rv1.on{opacity:1}
+.rv1 .qm{font-family:'Cormorant Garamond',serif;font-size:110px;line-height:.5;color:var(--gold);opacity:.5}
+.rv1 p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.7vw,30px);line-height:1.7;margin:22px 0 26px;color:#eadfc8}
+.rv1 .w{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
+.rv1 .w b{color:var(--gold2);font-weight:500}
+.rdots{display:flex;gap:12px;justify-content:center;margin-top:30px}
+.rd{width:34px;height:2px;background:rgba(238,212,136,.25);cursor:pointer;transition:background .4s}
+.rd.on{background:var(--gold2)}
+.final{position:relative;padding:26vh 8vw;text-align:center;overflow:hidden}
+.final .bgimg{position:absolute;inset:-12%;background-size:cover;background-position:center;will-change:transform}
+.final .veil{position:absolute;inset:0;background:rgba(8,6,4,.68)}
+.final .in{position:relative;z-index:3}
+.final .script{font-size:clamp(40px,6vw,84px);color:var(--gold2)}
+.final h2{font-family:'Italiana',serif;font-size:clamp(40px,6.5vw,96px);color:#fbf7ec;margin:6px 0 18px}
+.final p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#d9cdb2;margin-bottom:44px}
+.cont{padding:14vh 8vw;max-width:1400px;margin:0 auto}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:60px}
+.cc{background:rgba(255,255,255,.03);border:1px solid var(--brd);border-radius:14px;padding:40px 30px;text-align:center;text-decoration:none;transition:transform .4s,border-color .4s,box-shadow .4s;display:block}
+.cc:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.cc .i{width:60px;height:60px;margin:0 auto 18px;border-radius:50%;border:1px solid var(--gold);color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:22px}
+.cc.wa .i{border-color:#1ebe5d;color:#1ebe5d}
+.cc h3{font-family:'Italiana',serif;font-size:21px;color:#f6efdf;margin-bottom:8px;letter-spacing:1px}
+.cc p{font-size:14px;color:var(--dim);line-height:1.8;word-break:break-word}
+.mapw{margin-top:40px;border-radius:14px;overflow:hidden;border:1px solid var(--brd);box-shadow:0 30px 80px rgba(0,0,0,.5);filter:saturate(.8) contrast(1.02)}
+.mapw iframe{width:100%;height:400px;border:0;display:block}
+footer{border-top:1px solid var(--brd);padding:80px 8vw 46px;text-align:center;background:var(--bg2)}
+footer .m{width:70px;height:70px;margin:0 auto 18px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Italiana',serif;font-size:22px;color:var(--gold2)}
+footer .n{font-family:'Italiana',serif;font-size:28px;letter-spacing:5px;color:#f6efdf}
+footer .a{margin-top:10px;font-size:13px;color:var(--dim);letter-spacing:1px}
+footer .cr{margin-top:36px;padding-top:24px;border-top:1px solid var(--brd);font-size:11px;letter-spacing:2px;color:var(--dim)}
+footer .cr b{color:var(--gold2);letter-spacing:4px;font-weight:500}
+footer .lg{margin-top:10px;font-size:10px;color:#6e644f;line-height:1.8}
+.waf{position:fixed;right:24px;bottom:24px;z-index:150;width:62px;height:62px;border-radius:50%;background:linear-gradient(120deg,#1ebe5d,#0e9d4d);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(30,190,93,.45);transition:transform .3s}
+.waf:hover{transform:scale(1.12)}
+.waf svg{width:30px;height:30px;fill:#fff}
+.waf .p{position:absolute;inset:0;border-radius:50%;border:2px solid #1ebe5d;animation:pl 2s infinite}
+.demo{position:fixed;bottom:26px;left:26px;z-index:150;background:rgba(10,8,6,.8);backdrop-filter:blur(14px);border:1px solid var(--brd);border-radius:40px;padding:9px 18px;font-size:11px;letter-spacing:1.5px;color:var(--dim);display:flex;gap:8px;align-items:center}
+.demo b{color:var(--gold2)}
+.demo .x{cursor:pointer;opacity:.6;margin-left:6px}
+#lb{position:fixed;inset:0;background:rgba(6,4,2,.96);z-index:400;display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px}
+#lb.on{display:flex}
+#lb img{max-width:90vw;max-height:80vh;border-radius:6px;box-shadow:0 40px 120px rgba(0,0,0,.8)}
+#lb .cl{position:absolute;top:28px;right:38px;font-size:36px;color:#e9dbb6;cursor:pointer}
+#lb .ar{display:flex;gap:26px}
+#lb .ar span{cursor:pointer;font-size:28px;padding:6px 22px;border:1px solid rgba(233,219,182,.35);border-radius:40px;color:#e9dbb6}
+.rvl{opacity:0;transform:translateY(60px)}
+</style>
+<script>
+window.fbk=function(el){var s=el.src;
+ if(s.indexOf('/3_2/1280/')>-1){el.src=s.replace('/3_2/1280/','/3_2/960/');}
+ else if(s.indexOf('/jpg/')>-1){el.src=s.replace('/jpg/','/jpeg/');el.onerror=null;}
+ else{el.onerror=null;}};
+</script>
+</head>
+<body>
+<div id="pre"><div class="mono">VM</div><div class="pct" id="pct">0</div><div class="name">Villa Mocale · Chianti</div></div>
+<div id="prog"></div>
+<div id="cur"></div><div id="curDot"></div>
+<nav id="nav">
+  <a class="logo" href="#top"><span class="m">VM</span><span class="t">VILLA MOCALE</span></a>
+  <div class="nl">
+    <a href="#dimora">La Dimora</a>
+    <a href="#spazi">Gli Spazi</a>
+    <a href="#film">Il Film</a>
+    <a href="#sposi">Gli Sposi</a>
+    <a href="#contatti">Contatti</a>
+    <a class="wab" href="https://wa.me/393289563155?text=Salve%21%20Ho%20visto%20la%20presentazione%20di%20Villa%20Mocale%20online%20e%20vorrei%20informazioni%20per%20un%20matrimonio.%20Grazie%21" target="_blank" rel="noopener"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.2.4 2.5.6 3.8.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-1.2 0-2.4-.2-3.5-.7l-.5-.2-4.9.9 1-4.7-.3-.5C6.6 18.2 6 16.6 6 15 6 9.5 10.5 5 16 5s10 4.5 10 10-4.5 10-10 10zm5.5-7.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.5c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.6 5.7 5 3.4 1.4 3.4.9 4 .9.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.5-.4z"/></svg>WhatsApp</a>
+  </div>
+</nav>
+<div id="smooth">
+<header id="hero">
+  <img class="hs on" src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/img-0330_2_25998-160009277896383.jpeg" alt="Villa Mocale" onerror="fbk(this)">
+  <img class="hs" src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/pana7500-edit-copia_2_25998-160009371411793.jpeg" alt="" onerror="fbk(this)">
+  <img class="hs" src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/p1001042-edit-copia_2_25998-160009339166045.jpeg" alt="" onerror="fbk(this)">
+  <div id="heroVeil"></div>
+  <canvas id="gl"></canvas>
+  <div class="hc">
+    <div class="hk rvl">Dimora storica · Chianti fiorentino · MCMXV</div>
+    <h1 class="ht" id="title">VILLA MOCALE</h1>
+    <div class="hsub rvl">« Il tramonto più bello del Chianti, il giorno più bello della vostra vita »</div>
+    <div class="hloc rvl">San Casciano in Val di Pesa — Firenze</div>
+    <div class="hcta rvl">
+      <a class="btn bg1 mag" href="https://wa.me/393289563155?text=Salve%21%20Ho%20visto%20la%20presentazione%20di%20Villa%20Mocale%20online%20e%20vorrei%20informazioni%20per%20un%20matrimonio.%20Grazie%21" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+      <a class="btn bg2b mag" href="#dimora">Scopri la dimora</a>
+    </div>
+  </div>
+  <div class="hint"><span>Scorri</span><span class="l"></span></div>
+</header>
+<div class="mq"><div class="in" id="mq">
+  <span>CHIANTI FIORENTINO <b>◆</b> WEDDING AWARDS <b>◆</b> 275+ MATRIMONI <b>◆</b> 4.9 SU MATRIMONIO.COM <b>◆</b> CORTE MEDIEVALE <b>◆</b> CANTINE STORICHE <b>◆</b> CAPPELLA PRIVATA <b>◆</b> </span>
+  <span>CHIANTI FIORENTINO <b>◆</b> WEDDING AWARDS <b>◆</b> 275+ MATRIMONI <b>◆</b> 4.9 SU MATRIMONIO.COM <b>◆</b> CORTE MEDIEVALE <b>◆</b> CANTINE STORICHE <b>◆</b> CAPPELLA PRIVATA <b>◆</b> </span>
+</div></div>
+<section class="manif" id="dimora">
+  <div class="line"><span>C'è un colle, tra San Casciano e Firenze,</span></div>
+  <div class="line"><span>dove il Chianti si accende <i>d'oro</i> ogni sera.</span></div>
+  <div class="line"><span>Lì, dal 1915, una corte medievale custodisce</span></div>
+  <div class="line"><span>il giorno più importante: <span class="script">il vostro</span></span></div>
+  <div class="stats">
+    <div class="st rvl"><div class="n" data-c="4.9" data-d="1">0</div><div class="l">su matrimonio.com</div></div>
+    <div class="st rvl"><div class="n" data-c="85">0</div><div class="l">Recensioni verificate</div></div>
+    <div class="st rvl"><div class="n" data-c="275">0</div><div class="l">Matrimoni celebrati</div></div>
+    <div class="st rvl"><div class="n" data-c="360">0</div><div class="l">Gradi di Chianti</div></div>
+  </div>
+</section>
+<section id="horiz">
+  <div id="hpin" style="position:relative;height:100vh;overflow:hidden">
+    <div class="htit"><div class="k">Gli Spazi</div><div class="t" id="spazi">Un viaggio nella dimora</div></div>
+    <div id="htrack">
+      <div class="panel"><img src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/img-0330_2_25998-160009277896383.jpeg" onerror="fbk(this)" alt="Corte medievale"><span class="num">01</span><div class="cap"><div class="k">Il cuore della villa</div><div class="t">La Corte Medievale</div></div></div>
+      <div class="panel"><img src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/p1001058-copia_2_25998-160025376913252.jpeg" onerror="fbk(this)" alt="Salone"><span class="num">02</span><div class="cap"><div class="k">Fino a 180 invitati</div><div class="t">Il Salone delle Feste</div></div></div>
+      <div class="panel"><img src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/img-8907_2_25998-163589731684483.jpeg" onerror="fbk(this)" alt="Cantine"><span class="num">03</span><div class="cap"><div class="k">Il party fino a notte</div><div class="t">Le Cantine Storiche</div></div></div>
+      <div class="panel"><img src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/pana7546-copia_2_25998-160009356821784.jpeg" onerror="fbk(this)" alt="Terrazza"><span class="num">04</span><div class="cap"><div class="k">Tramonti a 360°</div><div class="t">La Terrazza sul Chianti</div></div></div>
+      <div class="panel"><img src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/image-1757jpg_2_25998.jpeg" onerror="fbk(this)" alt="Cerimonia"><span class="num">05</span><div class="cap"><div class="k">Il momento del sì</div><div class="t">La Cappella Privata</div></div></div>
+      <div class="panel"><img src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/villa-il-mocale-studio-fotografico-righi-7_2_25998-160009335685430.jpeg" onerror="fbk(this)" alt="Dettagli"><span class="num">06</span><div class="cap"><div class="k">Ogni dettaglio conta</div><div class="t">L'Arte della Tavola</div></div></div>
+    </div>
+  </div>
+</section>
+<section class="film" id="film">
+  <div class="k rvl">Il Film</div>
+  <h2 class="rvl">La villa in movimento</h2>
+  <p class="rvl">Due minuti per innamorarsene, come le 275 coppie prima di voi</p>
+  <div class="fwrap rvl">
+    <div class="fcover" id="fcover" style="background-image:url('https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/pana7500-edit-copia_2_25998-160009371411793.jpeg')"><div class="play"><span class="pulse2"></span></div></div>
+    <div id="fslot"></div>
+  </div>
+</section>
+<section class="ed">
+  <div class="im rvl"><img id="par1" src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/5d4-0987-copia_2_25998-160009374849111.jpeg" onerror="fbk(this)" alt="Cucina"></div>
+  <div class="tx">
+    <div class="k rvl">L'Esperienza</div>
+    <h3 class="rvl">Una sola festa al giorno.<br>La vostra.</h3>
+    <p class="rvl">Villa Mocale accoglie <b>un solo evento al giorno</b>: la corte, i saloni, le cantine e la terrazza sono esclusivamente vostri, dall'aperitivo al tramonto fino all'ultimo ballo sotto le volte in pietra.</p>
+    <ul>
+      <li class="rvl">Cucina interna con menù su misura — vegetariano, vegano, gluten free</li>
+      <li class="rvl">Open bar senza limiti di orario</li>
+      <li class="rvl">Nessuna esclusiva su fotografo e musica: portate chi amate</li>
+      <li class="rvl">Cappella privata per il rito religioso o simbolico</li>
+    </ul>
+  </div>
+</section>
+<section class="ed" style="direction:rtl">
+  <div class="im rvl" style="direction:ltr"><img id="par2" src="https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/21ef5ae7-b732-4579-87a9-48323206de4c_2_25998-163527873197324.jpeg" onerror="fbk(this)" alt="Sposi"></div>
+  <div class="tx" style="direction:ltr">
+    <div class="k rvl">Chi vi accoglie</div>
+    <h3 class="rvl">Enrico, Stella<br>e Gabriella</h3>
+    <p class="rvl">Dietro ogni matrimonio perfetto c'è una famiglia che lo cura come fosse il proprio. Gli sposi li citano per nome in decine di recensioni: <b>professionalità, calore e una regia invisibile</b> che fa scorrere tutto senza che ve ne accorgiate.</p>
+    <ul>
+      <li class="rvl">Sopralluogo e degustazione riservata per gli sposi</li>
+      <li class="rvl">Coordinamento allestimenti, fiori e fornitori</li>
+      <li class="rvl">Wedding Awards di matrimonio.com</li>
+    </ul>
+  </div>
+</section>
+<section class="revs" id="sposi">
+  <div class="stars rvl">★★★★★</div>
+  <div class="big rvl">4.9 <span style="font-size:.35em;color:var(--dim)">su 5</span></div>
+  <div class="src rvl">85 recensioni verificate · matrimonio.com</div>
+  <div class="rc">
+    <div class="rv1 on"><div class="qm">“</div><p>Villa stupenda con un tramonto da cartolina sulle colline. Le cantine per la festa rappresentano la chicca finale.</p><div class="w"><b>Alessandra</b> · Agosto 2026</div></div>
+    <div class="rv1"><div class="qm">“</div><p>Luogo perfetto per il matrimonio. Enrico e Stella eccezionali per disponibilità e professionalità durante tutta l'organizzazione.</p><div class="w"><b>Sara</b> · Agosto 2026</div></div>
+    <div class="rv1"><div class="qm">“</div><p>Gestori meravigliosi e professionali: hanno curato allestimenti floreali e sorprese con perfezione assoluta.</p><div class="w"><b>Carlotta</b> · Luglio 2026</div></div>
+  </div>
+  <div class="rdots" id="rdots"></div>
+</section>
+<section class="final">
+  <div class="bgimg" id="finbg" style="background-image:url('https://cdn0.matrimonio.com/vendor/5998/3_2/1280/jpg/img-0330_2_25998-160009277896383.jpeg')"></div>
+  <div class="veil"></div>
+  <div class="in">
+    <div class="script rvl">Il vostro giorno</div>
+    <h2 class="rvl">comincia qui</h2>
+    <p class="rvl">Raccontateci come lo avete immaginato — vi rispondiamo entro poche ore</p>
+    <a class="btn bg1 mag rvl" href="https://wa.me/393289563155?text=Salve%21%20Ho%20visto%20la%20presentazione%20di%20Villa%20Mocale%20online%20e%20vorrei%20informazioni%20per%20un%20matrimonio.%20Grazie%21" target="_blank" rel="noopener">Parliamone su WhatsApp</a>
+  </div>
+</section>
+<section class="cont" id="contatti">
+  <div style="text-align:center">
+    <div class="k rvl" style="font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold2)">Contatti</div>
+    <h2 class="rvl" style="font-family:'Italiana',serif;font-size:clamp(34px,5vw,70px);color:#f6efdf;margin-top:12px">Veniteci a trovare</h2>
+  </div>
+  <div class="cg">
+    <a class="cc wa rvl" href="https://wa.me/393289563155?text=Salve%21%20Ho%20visto%20la%20presentazione%20di%20Villa%20Mocale%20online%20e%20vorrei%20informazioni%20per%20un%20matrimonio.%20Grazie%21" target="_blank" rel="noopener"><div class="i">✆</div><h3>WhatsApp</h3><p>+39 328 9563155<br>Risposta rapida, 7 giorni su 7</p></a>
+    <a class="cc rvl" href="tel:+393289563155"><div class="i">☏</div><h3>Telefono</h3><p>+39 328 9563155<br>Chiamateci per un sopralluogo</p></a>
+    <a class="cc rvl" href="mailto:info@castelloricevimenti.it?subject=Richiesta%20informazioni%20matrimonio%20%E2%80%94%20Villa%20Mocale"><div class="i">✉</div><h3>Email</h3><p>info@castelloricevimenti.it<br>Vi rispondiamo entro 24 ore</p></a>
+    <a class="cc rvl" href="https://www.instagram.com/villa.mocale/" target="_blank" rel="noopener"><div class="i">◉</div><h3>Instagram</h3><p>@villa.mocale<br>La villa, giorno per giorno</p></a>
+    <a class="cc rvl" href="https://maps.google.com/?q=Villa%20Mocale%2C%20Via%20Collina%2062%2C%20San%20Casciano%20in%20Val%20di%20Pesa" target="_blank" rel="noopener"><div class="i">⚲</div><h3>Dove siamo</h3><p>Via Collina 62<br>50026 San Casciano in Val di Pesa (FI)</p></a>
+  </div>
+  <div class="mapw rvl"><iframe loading="lazy" src="https://maps.google.com/maps?q=Villa%20Mocale%2C%20Via%20Collina%2062%2C%2050026%20San%20Casciano%20in%20Val%20di%20Pesa&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Mappa"></iframe></div>
+</section>
+<footer>
+  <div class="m">VM</div>
+  <div class="n">VILLA MOCALE</div>
+  <div class="a">Via Collina 62 · 50026 San Casciano in Val di Pesa · Firenze</div>
+  <div class="cr">Concept, design & code <b>UMBRA</b> · siti su misura per dimore d'eccezione</div>
+  <div class="lg">Anteprima dimostrativa non ufficiale realizzata da Umbra e proposta gratuitamente alla struttura.<br>Fotografie e video © Villa Mocale / Castello Ricevimenti / rispettivi autori — usati solo come anteprima, rimossi su richiesta.</div>
+</footer>
+</div>
+<a class="waf" href="https://wa.me/393289563155?text=Salve%21%20Ho%20visto%20la%20presentazione%20di%20Villa%20Mocale%20online%20e%20vorrei%20informazioni%20per%20un%20matrimonio.%20Grazie%21" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="p"></span><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.2.4 2.5.6 3.8.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-1.2 0-2.4-.2-3.5-.7l-.5-.2-4.9.9 1-4.7-.3-.5C6.6 18.2 6 16.6 6 15 6 9.5 10.5 5 16 5s10 4.5 10 10-4.5 10-10 10zm5.5-7.4c-.3-.2-1.8-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.5c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.6 5.7 5 3.4 1.4 3.4.9 4 .9.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.5-.4z"/></svg></a>
+<div class="demo" id="demo"><b>ANTEPRIMA UMBRA</b> · concept per Villa Mocale <span class="x" onclick="document.getElementById('demo').style.display='none'">✕</span></div>
+<div id="lb"><span class="cl" id="lbc">✕</span><img id="lbi" src="" alt="" referrerpolicy="no-referrer"><div class="ar"><span id="lbp">‹</span><span id="lbn">›</span></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+"use strict";
+var GS = (typeof gsap!=='undefined');
+if(GS && typeof ScrollTrigger!=='undefined'){gsap.registerPlugin(ScrollTrigger);}
+var pct=document.getElementById('pct'),pre=document.getElementById('pre'),pv=0;
+var pt=setInterval(function(){pv=Math.min(pv+Math.random()*14,96);pct.textContent=Math.floor(pv);},110);
+var preDone=false;
+function closePre(){if(preDone)return;preDone=true;clearInterval(pt);pct.textContent='100';
+ if(GS){gsap.to(pre,{opacity:0,duration:.9,delay:.25,onComplete:function(){pre.style.display='none';}});}
+ else{pre.style.opacity=0;setTimeout(function(){pre.style.display='none';},900);}
+ reveal();}
+window.addEventListener('load',function(){setTimeout(closePre,700);});
+setTimeout(closePre,4200);
+var cur=document.getElementById('cur'),dot=document.getElementById('curDot');
+var cx=0,cy=0,tx2=0,ty2=0;
+document.addEventListener('mousemove',function(e){tx2=e.clientX;ty2=e.clientY;dot.style.left=tx2+'px';dot.style.top=ty2+'px';});
+(function cl(){cx+=(tx2-cx)*.16;cy+=(ty2-cy)*.16;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(cl);})();
+document.querySelectorAll('a,.panel,.fcover').forEach(function(el){
+ el.addEventListener('mouseenter',function(){cur.classList.add('big');});
+ el.addEventListener('mouseleave',function(){cur.classList.remove('big');});});
+document.querySelectorAll('.mag').forEach(function(b){
+ b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();
+  var x=(e.clientX-r.left-r.width/2)*.25,y=(e.clientY-r.top-r.height/2)*.35;
+  b.style.transform='translate('+x+'px,'+y+'px)';});
+ b.addEventListener('mouseleave',function(){b.style.transform='none';});});
+var nav=document.getElementById('nav'),prog=document.getElementById('prog');
+window.addEventListener('scroll',function(){
+ if(window.scrollY>70){nav.classList.add('solid');}else{nav.classList.remove('solid');}
+ var h=document.documentElement.scrollHeight-window.innerHeight;
+ prog.style.width=(window.scrollY/h*100)+'%';
+},{passive:true});
+var t=document.getElementById('title');
+var txt=t.textContent;t.textContent='';
+for(var i=0;i<txt.length;i++){var sp=document.createElement('span');sp.className='ch';sp.innerHTML=(txt[i]===' ')?'&nbsp;':txt[i];t.appendChild(sp);}
+function reveal(){
+ if(GS){
+  gsap.fromTo('.ht .ch',{y:120,opacity:0,rotateX:-60},{y:0,opacity:1,rotateX:0,duration:1.3,stagger:.045,ease:'power4.out'});
+  gsap.fromTo('#hero .rvl',{y:40,opacity:0},{y:0,opacity:1,duration:1.2,stagger:.14,delay:.6,ease:'power3.out'});
+ } else {
+  document.querySelectorAll('.rvl,.ht .ch').forEach(function(e){e.style.opacity=1;e.style.transform='none';});
+ }
+}
+var hs=document.querySelectorAll('.hs'),hi=0;
+setInterval(function(){hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on');},6500);
+if(GS){
+ gsap.to('.hs',{scale:1.12,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+ gsap.to('.hc',{y:-120,opacity:.25,scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+}
+document.addEventListener('mousemove',function(e){
+ var dx=(e.clientX/window.innerWidth-.5),dy=(e.clientY/window.innerHeight-.5);
+ hs.forEach(function(im){im.style.transform='translate('+(dx*-18)+'px,'+(dy*-12)+'px)';});
+});
+var cv=document.getElementById('gl'),ctx=cv.getContext('2d'),P=[];
+function rs(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}rs();window.addEventListener('resize',rs);
+for(var j=0;j<110;j++){P.push({x:Math.random(),y:Math.random(),z:Math.random(),r:Math.random()*2.2+.3,s:Math.random()*.5+.1,ph:Math.random()*6.28,dr:Math.random()>.5?1:-1});}
+var mx=0,my=0;document.addEventListener('mousemove',function(e){mx=e.clientX/window.innerWidth-.5;my=e.clientY/window.innerHeight-.5;});
+(function tick(){
+ ctx.clearRect(0,0,cv.width,cv.height);
+ for(var k=0;k<P.length;k++){var p=P[k];
+  p.y-=p.s/1100;p.x+=Math.sin(p.ph)*.00025*p.dr;p.ph+=.015;
+  if(p.y<-.02){p.y=1.02;p.x=Math.random();}
+  var tw=.45+.55*Math.sin(p.ph*2);
+  var px=(p.x+mx*.06*p.z)*cv.width,py=(p.y+my*.04*p.z)*cv.height;
+  var g=ctx.createRadialGradient(px,py,0,px,py,p.r*3.2);
+  g.addColorStop(0,'rgba(240,210,120,'+(.5*tw*p.z+.12)+')');g.addColorStop(1,'rgba(240,210,120,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py,p.r*3.2,0,6.28);ctx.fill();}
+ requestAnimationFrame(tick);})();
+if(GS){gsap.to('#mq',{xPercent:-50,ease:'none',duration:26,repeat:-1});}
+if(GS){
+ gsap.utils.toArray('.manif .line span').forEach(function(el){
+  gsap.fromTo(el,{y:'110%'},{y:'0%',duration:1.1,ease:'power4.out',scrollTrigger:{trigger:el.parentNode,start:'top 88%'}});});
+}
+document.querySelectorAll('[data-c]').forEach(function(el){
+ var target=parseFloat(el.getAttribute('data-c')),dec=el.getAttribute('data-d')?1:0,done=false;
+ function run(){if(done)return;done=true;var s=0,st=Math.max(dec?.1:1,target/60);
+  var iv=setInterval(function(){s+=st;if(s>=target){s=target;clearInterval(iv);}
+   el.textContent=dec?s.toFixed(1):Math.floor(s)+(target===275?'+':(target===360?'°':''));},22);}
+ if(GS){ScrollTrigger.create({trigger:el,start:'top 90%',onEnter:run});}
+ else{run();}
+});
+if(GS){
+ gsap.utils.toArray('.rvl').forEach(function(el){
+  if(el.closest('#hero'))return;
+  gsap.fromTo(el,{y:60,opacity:0},{y:0,opacity:1,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});});
+} else {
+ document.querySelectorAll('.rvl').forEach(function(e){e.style.opacity=1;e.style.transform='none';});
+}
+if(GS){
+ var track=document.getElementById('htrack');
+ var getW=function(){return track.scrollWidth-window.innerWidth;};
+ gsap.to(track,{x:function(){return -getW();},ease:'none',
+  scrollTrigger:{trigger:'#hpin',start:'top top',end:function(){return '+='+(getW()+window.innerHeight*.2);},scrub:1,pin:true,invalidateOnRefresh:true,anticipatePin:1}});
+ gsap.fromTo('.panel img',{scale:1.16},{scale:1.02,ease:'none',
+  scrollTrigger:{trigger:'#hpin',start:'top top',end:'+=2000',scrub:1}});
+}
+var imgs=[],li=0;
+document.querySelectorAll('.panel img').forEach(function(im){imgs.push(im.src);});
+var lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+function show(n){li=(n+imgs.length)%imgs.length;lbi.src=imgs[li];}
+document.querySelectorAll('.panel').forEach(function(pn,n){pn.addEventListener('click',function(){lb.classList.add('on');show(n);});});
+document.getElementById('lbc').addEventListener('click',function(){lb.classList.remove('on');});
+document.getElementById('lbp').addEventListener('click',function(){show(li-1);});
+document.getElementById('lbn').addEventListener('click',function(){show(li+1);});
+lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('on');}});
+document.getElementById('fcover').addEventListener('click',function(){
+ var f=document.createElement('iframe');
+ f.src='https://www.youtube-nocookie.com/embed/mcSoDknWfxQ?autoplay=1&rel=0&modestbranding=1';
+ f.allow='autoplay; encrypted-media; fullscreen';f.allowFullscreen=true;
+ document.getElementById('fslot').parentNode.appendChild(f);
+ this.style.display='none';
+});
+if(GS){
+ [['#par1',1],['#par2',-1]].forEach(function(cfg){
+  gsap.fromTo(cfg[0],{yPercent:-8*cfg[1]},{yPercent:8*cfg[1],ease:'none',scrollTrigger:{trigger:cfg[0],start:'top bottom',end:'bottom top',scrub:true}});});
+ gsap.fromTo('#finbg',{yPercent:-10,scale:1.1},{yPercent:10,scale:1.18,ease:'none',scrollTrigger:{trigger:'.final',start:'top bottom',end:'bottom top',scrub:true}});
+}
+var rv=document.querySelectorAll('.rv1'),rd=document.getElementById('rdots'),ri=0,rT;
+rv.forEach(function(_,n){var d=document.createElement('span');d.className='rd'+(n===0?' on':'');
+ d.addEventListener('click',function(){go(n);clearInterval(rT);rT=setInterval(function(){go(ri+1);},7000);});rd.appendChild(d);});
+function go(n){rv[ri].classList.remove('on');rd.children[ri].classList.remove('on');ri=(n+rv.length)%rv.length;rv[ri].classList.add('on');rd.children[ri].classList.add('on');}
+rT=setInterval(function(){go(ri+1);},7000);
+(function(){
+ if(window.matchMedia('(hover:none)').matches){return;}
+ var target=window.scrollY,current=target,easing=.085;
+ var max=function(){return document.documentElement.scrollHeight-window.innerHeight;};
+ window.addEventListener('wheel',function(e){
+  if(lb.classList.contains('on'))return;
+  e.preventDefault();target=Math.max(0,Math.min(max(),target+e.deltaY));
+ },{passive:false});
+ document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){var id=a.getAttribute('href');var el=document.querySelector(id);
+   if(el){e.preventDefault();target=el.getBoundingClientRect().top+window.scrollY;}});});
+ (function loop(){current+=(target-current)*easing;
+  if(Math.abs(target-current)<.4){current=target;}
+  window.scrollTo(0,current);requestAnimationFrame(loop);})();
+ window.addEventListener('keydown',function(e){
+  if(e.key==='ArrowDown'||e.key==='PageDown'){target=Math.min(max(),target+(e.key==='PageDown'?window.innerHeight*.9:90));}
+  if(e.key==='ArrowUp'||e.key==='PageUp'){target=Math.max(0,target-(e.key==='PageUp'?window.innerHeight*.9:90));}
+  if(e.key==='Home'){target=0;} if(e.key==='End'){target=max();}
+ });
+ setInterval(function(){if(Math.abs(window.scrollY-current)>60){current=target=window.scrollY;}},400);
+})();
+})();
+</script>
+</body>
+</html><!-- test umbra --><!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
