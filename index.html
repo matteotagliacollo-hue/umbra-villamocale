@@ -35,6 +35,11 @@ a{color:inherit}
 #pre .mono:after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid transparent;border-top-color:var(--gold2);animation:spin 1.2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #pre .name{letter-spacing:10px;font-size:13px;text-transform:uppercase;color:var(--dim)}
+#pre .name{padding:0 8vw;text-align:center;max-width:100%}
+@media(max-width:600px){#pre .name{letter-spacing:4px;font-size:11px;line-height:1.9}}
+#pre .by{margin-top:-6px;text-align:center}
+#pre .by b{display:block;font-family:'Italiana',serif;font-weight:400;font-size:24px;letter-spacing:11px;color:var(--gold2);text-indent:11px}
+#pre .by i{display:block;margin-top:9px;font-style:normal;font-size:9.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--dim);opacity:.8}
 #pre .pct{font-family:'Italiana',serif;font-size:70px;color:var(--ink);line-height:1}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:26px 4vw;transition:all .5s}
 nav.solid{background:rgba(10,8,6,.72);backdrop-filter:blur(20px);padding:14px 4vw;border-bottom:1px solid var(--brd)}
@@ -182,7 +187,7 @@ window.fbk=function(el){var s=el.src;
 </script>
 </head>
 <body>
-<div id="pre"><div class="mono">VM</div><div class="pct" id="pct">0</div><div class="name">Villa Mocale · Chianti</div></div>
+<div id="pre"><div class="mono">VM</div><div class="pct" id="pct">0</div><div class="name">Villa Mocale · Chianti</div><div class="by"><b>UMBRA</b><i>by Matteo Tagliacollo</i></div></div>
 <div id="prog"></div>
 <div id="cur"></div><div id="curDot"></div>
 <nav id="nav">
